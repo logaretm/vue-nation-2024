@@ -1,0 +1,22 @@
+[
+  { "country": "United States", "flag": "🇺🇸" },
+  { "country": "Canada", "flag": "🇨🇦" },
+  { "country": "Mexico", "flag": "🇲🇽" },
+  { "country": "Brazil", "flag": "🇧🇷" },
+  { "country": "Argentina", "flag": "🇦🇷" },
+  { "country": "United Kingdom", "flag": "🇬🇧" },
+  { "country": "France", "flag": "🇫🇷" },
+  { "country": "Germany", "flag": "🇩🇪" },
+  { "country": "Italy", "flag": "🇮🇹" },
+  { "country": "Spain", "flag": "🇪🇸" },
+  { "country": "Russia", "flag": "🇷🇺" },
+  { "country": "China", "flag": "🇨🇳" },
+  { "country": "India", "flag": "🇮🇳" },
+  { "country": "Japan", "flag": "🇯🇵" },
+  { "country": "South Korea", "flag": "🇰🇷" },
+  { "country": "Australia", "flag": "🇦🇺" },
+  { "country": "New Zealand", "flag": "🇳🇿" },
+  { "country": "South Africa", "flag": "🇿🇦" },
+  { "country": "Nigeria", "flag": "🇳🇬" },
+  { "country": "Egypt", "flag": "🇪🇬" }
+]
