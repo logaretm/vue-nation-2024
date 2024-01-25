@@ -18,58 +18,25 @@ const form = reactive({
       v-model="form.speaker"
       label="Speaker"
       placeholder="Select a speaker"
-      :options="
-        speakers.map((s) => ({
-          id: s.name,
-          label: s.name,
-          extras: { imageURL: s.imageURL },
-        }))
-      "
-    >
-      <template #selectedOption="{ option }">
-        <div class="flex items-center space-x-2">
-          <img
-            :src="option.extras?.imageURL"
-            :alt="option.label"
-            class="w-4 h-4 rounded-full"
-          />
-          <span>{{ option.label }}</span>
-        </div>
-      </template>
-
-      <template #option="{ option }">
-        <div class="flex items-center space-x-2">
-          <img
-            :src="option.extras?.imageURL"
-            :alt="option.label"
-            class="w-8 h-8 rounded-full"
-          />
-          <span>{{ option.label }}</span>
-        </div>
-      </template>
-    </InputSelect>
+      :options="speakers"
+      :optionLabel="(s) => s.name"
+    />
 
     <InputSelect
       v-model="form.category"
       label="Category"
       placeholder="Select a technology"
-      :options="tags.map((t) => ({ id: t, label: t }))"
+      :options="tags"
     />
 
     <InputSelect
       v-model="form.country"
       label="Country"
       placeholder="Select a country"
-      :options="
-        countries.map((c) => ({
-          id: c.country,
-          label: c.country,
-          extras: { flag: c.flag },
-        }))
-      "
+      :options="countries"
     >
       <template #option="{ option }">
-        {{ option.extras?.flag }} {{ option.label }}
+        {{ option.flag }} {{ option.country }}
       </template>
     </InputSelect>
 

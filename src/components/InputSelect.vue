@@ -1,24 +1,31 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="TOption">
 import { isEqual } from '@/utils';
 
-type Option = {
-  id: string;
+const props = defineProps<{
   label: string;
-  extras?: Record<string, any>;
-};
-
-defineProps<{
-  label: string;
-  options: Option[];
+  options: TOption[];
   placeholder?: string;
+  optionLabel?: (option: TOption) => string;
 }>();
 
-const model = defineModel<Option>();
+const model = defineModel<TOption>();
+
+function toKey(option: TOption): string {
+  return JSON.stringify(option);
+}
+
+function toLabel(option: TOption): string {
+  if (props.optionLabel) {
+    return props.optionLabel(option);
+  }
+
+  return String(option);
+}
 
 function onChange(event: Event) {
   // Specific to selectlist spec
   const target = event.target as HTMLSelectElement & {
-    selectedOption: { _value?: Option; value: Option };
+    selectedOption: { _value?: TOption; value: TOption };
   };
 
   const option = target.selectedOption;
@@ -50,7 +57,7 @@ function onChange(event: Event) {
 
         <option
           v-for="opt in options"
-          :key="opt.id"
+          :key="toKey(opt)"
           :value="opt"
           class="InputSelect__opt"
           :aria-selected="isEqual(opt, modelValue)"
@@ -60,7 +67,7 @@ function onChange(event: Event) {
             :option="opt"
             :selected="isEqual(opt, modelValue)"
           >
-            {{ opt.label }}
+            {{ toLabel(opt) }}
           </slot>
         </option>
       </listbox>
