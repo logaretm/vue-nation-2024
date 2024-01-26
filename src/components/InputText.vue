@@ -4,25 +4,32 @@
     <input
       :id="id"
       :value="model"
-      :type="type"
+      :type="(type as TType)"
       @input="updateValue"
       @change="updateValue"
     />
   </div>
 </template>
 
-<script setup lang="ts">
-defineProps<{
-  type: 'text' | 'number';
+<script setup lang="ts" generic="TType extends 'text' | 'number'">
+const props = defineProps<{
+  type: TType;
   label: string;
 }>();
 
+type Value = TType extends 'number' ? number : string;
+
 const id = crypto.randomUUID();
-const model = defineModel<string | number>();
+const model = defineModel<Value>();
 
 function updateValue(event: Event) {
   const target = event.target as HTMLInputElement;
-  model.value = target.value;
+  if (props.type === 'number') {
+    model.value = Number(target.value) as Value;
+    return;
+  }
+
+  model.value = String(target.value) as Value;
 }
 </script>
 
